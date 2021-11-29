@@ -80,7 +80,7 @@ export function importPathVisitor(
   }
 
   if (ts.isImportDeclaration(node)) {
-    newNode = ts.updateImportDeclaration(
+    const importNode = ts.updateImportDeclaration(
       node,
       node.decorators,
       node.modifiers,
@@ -88,6 +88,10 @@ export function importPathVisitor(
       newSpec
     )
 
+    importNode.moduleSpecifier.parent = node.moduleSpecifier.parent
+    
+    newNode = importNode
+    
     /**
      * Without this hack ts generates bad import of pure interface in output js,
      * this causes warning "module has no exports" in bundlers.
