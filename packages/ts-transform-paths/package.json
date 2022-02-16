@@ -38,5 +38,8 @@
   },
   "dependencies": {
     "@zerollup/ts-helpers": "^1.7.18"
+  },
+  "devDependencies": {
+    "typescript": ">=3.7.2 <4"
   }
 }

@@ -122,7 +122,8 @@ export function importPathVisitor(
       node.decorators,
       node.modifiers,
       node.exportClause,
-      newSpec
+      newSpec,
+      node.isTypeOnly
     )
     if (exportNode.flags !== node.flags) {
       /**
