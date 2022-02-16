@@ -1,6 +1,6 @@
 {
-  "name": "@zerollup/ts-transform-paths",
-  "version": "1.7.18",
+  "name": "@ovos-media/ts-transform-paths",
+  "version": "1.7.18-1",
   "license": "MIT",
   "description": "Ts transform paths",
   "author": {
@@ -10,11 +10,11 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/zerkalica/zerollup",
+  "repository": "https://github.com/ovos/zerollup",
   "bugs": {
     "url": "https://github.com/zerkalica/zerollup/issues"
   },
-  "homepage": "https://github.com/zerkalica/zerollup/tree/master/packages/ts-transform-paths",
+  "homepage": "https://github.com/ovos/zerollup/tree/master/packages/ts-transform-paths",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",

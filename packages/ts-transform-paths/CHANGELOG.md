@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.18-1](https://github.com/ovos/zerollup/compare/v1.7.18...v1.7.18-1) (2022-02-16)
+
+
+### Bug Fixes
+
+* **ts-transform-paths:** closes [#37](https://github.com/zerkalica/zerollup/issues/37), typescript 4.5 compatibility ([bf4128c](https://github.com/ovos/zerollup/commit/bf4128c34b3c71c2a38db3a80a8a3d1329b6da2d))
+
+
+
+
 ## [1.7.18](https://github.com/zerkalica/zerollup/compare/v1.7.17...v1.7.18) (2020-06-08)
 
 **Note:** Version bump only for package @zerollup/ts-transform-paths
