@@ -64,28 +64,30 @@ export function importPathVisitor(
   if (!newImport || newImport === importValue) return
 
   if (nodeToFix && fixNode) fixNode(nodeToFix, newImport)
-  const newSpec = ts.createLiteral(newImport)
+  const newSpec = ts.factory.createStringLiteral(newImport)
 
   let newNode: ts.Node | undefined
 
   if (ts.isImportTypeNode(node)) {
-    newNode = ts.updateImportTypeNode(
+    newNode = ts.factory.updateImportTypeNode(
       node,
-      ts.createLiteralTypeNode(newSpec),
+      ts.factory.createLiteralTypeNode(newSpec),
       node.qualifier,
       node.typeArguments,
       node.isTypeOf
     )
     newNode.flags = node.flags
   }
+  
+   const mods = ts.canHaveModifiers(node) ? ts.getModifiers(node) : undefined
 
   if (ts.isImportDeclaration(node)) {
-    const importNode = ts.updateImportDeclaration(
+    const importNode = ts.factory.updateImportDeclaration(
       node,
-      node.decorators,
-      node.modifiers,
+      mods,
       node.importClause,
-      newSpec
+      newSpec,
+      node.assertClause
     )
 
     importNode.moduleSpecifier.parent = node.moduleSpecifier.parent
@@ -117,14 +119,16 @@ export function importPathVisitor(
   }
 
   if (ts.isExportDeclaration(node)) {
-    const exportNode = ts.updateExportDeclaration(
+   
+    const exportNode = ts.factory.updateExportDeclaration(
       node,
-      node.decorators,
-      node.modifiers,
+      mods,
+      node.isTypeOnly,
       node.exportClause,
       newSpec,
-      node.isTypeOnly
+      node.assertClause
     )
+
     if (exportNode.flags !== node.flags) {
       /**
        * Additional hacks for exports. Without it ts throw exception, if flags changed in export node.
@@ -144,15 +148,14 @@ export function importPathVisitor(
   }
 
   if (ts.isCallExpression(node))
-    newNode = ts.updateCall(node, node.expression, node.typeArguments, [
+    newNode = ts.factory.updateCallExpression(node, node.expression, node.typeArguments, [
       newSpec,
     ])
 
   if (ts.isModuleDeclaration(node)) {
-    newNode = ts.updateModuleDeclaration(
+    newNode = ts.factory.updateModuleDeclaration(
       node,
-      node.decorators,
-      node.modifiers,
+      mods,
       newSpec,
       node.body
     )
