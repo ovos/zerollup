@@ -1,3 +1,10 @@
+⚠ outdated, archived
+# 👉 use [typescript-transform-paths](https://www.npmjs.com/package/typescript-transform-paths) instead 👈
+details: https://github.com/ovos/zerollup/pull/1#issuecomment-1379235447
+
+
+Original readme below:
+
 # Zero setup rollup
 
 Zero configuration web application or library bundler, built on top of rollup (But some packages can be used without rollup).
